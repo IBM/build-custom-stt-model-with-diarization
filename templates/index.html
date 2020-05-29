@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Build Custom Watson Speech to Text Model</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="static/css/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/carbon-components/css/carbon-components.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+
+</head>
+
+<body>
+    <nav class="bx--header">
+        <a class="bx--header__name" href="javascript:void(0)" title="">
+            <span class="bx--header__name--prefix">
+                Watson
+                &nbsp;
+            </span> Speech to Text with Diarization
+        </a>
+        <nav class="bx--header__nav" aria-label="Platform Name" data-header-nav>
+            <ul class="bx--header__menu-bar" aria-label="Platform Name">
+                <li>
+                    <a class="bx--header__menu-item" href="/" tabindex="0">
+                        Train Model
+                    </a>
+                </li>
+                <li>
+                    <a class="bx--header__menu-item" href="/transcribe" tabindex="0">
+                        Transcribe Text
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </nav>
+
+    <div class="custom-container">
+        <div class="bx--grid">
+            <div class="bx--row">
+                <div class="bx--col-sm-2">
+                    <div class="outside">
+                        <div class="inside">
+                            <h2>Build a custom acoustic Speech to Text<br>model with Diarization</h2>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bx--col-sm-1">
+                    <div class="outside">
+                        <div class="inside">
+                            <div id="toast">
+                                <div data-notification class="bx--toast-notification bx--toast-notification--info" role="alert">
+                                    <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--toast-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                                        <path
+                                            d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,5a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,16,7Zm4,17.12H12V21.88h2.88V15.12H13V12.88h4.13v9H20Z">
+                                        </path>
+                                    </svg>
+                                    <div class="bx--toast-notification__details">
+                                        <h3 class="bx--toast-notification__title">Cloud Object Storage</h3>
+                                        <p class="bx--toast-notification__subtitle" id="cosNotify">connecting ...</p>
+                                    </div>
+                                    <button data-notification-btn class="bx--toast-notification__close-button" type="button" aria-label="close">
+                                        <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                            style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
+                                            class="bx--toast-notification__close-icon" width="20" height="20"
+                                            viewBox="0 0 32 32" aria-hidden="true">
+                                            <path
+                                                d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4 14.6 16 8 22.6 9.4 24 16 17.4 22.6 24 24 22.6 17.4 16 24 9.4z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bx--col-sm-1">
+                    <div class="outside">
+                        <div class="inside">
+                            <div id="toast2">
+                                <div data-notification class="bx--toast-notification bx--toast-notification--info" role="alert">
+                                    <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--toast-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                                        <path
+                                            d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,5a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,16,7Zm4,17.12H12V21.88h2.88V15.12H13V12.88h4.13v9H20Z">
+                                        </path>
+                                    </svg>
+                                    <div class="bx--toast-notification__details">
+                                        <h3 class="bx--toast-notification__title">Speech-To-Text</h3>
+                                        <p class="bx--toast-notification__subtitle" id="sttNotify">connecting ...</p>
+                                    </div>
+                                    <button data-notification-btn class="bx--toast-notification__close-button" type="button" aria-label="close">
+                                        <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                            style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
+                                            class="bx--toast-notification__close-icon" width="20" height="20"
+                                            viewBox="0 0 32 32" aria-hidden="true">
+                                            <path
+                                                d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4 14.6 16 8 22.6 9.4 24 16 17.4 22.6 24 24 22.6 17.4 16 24 9.4z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bx--row">
+                <div class="bx--col-md-2">
+                    <div class="outside">
+                        <div class="inside">
+                            <h4>Step 1</h4>
+                            <div class="bx--form-item">
+                                <strong class="bx--file--label">Preview the training data and upload to Watson
+                                    Speech-To-Text</strong>
+                                <p class="bx--label-description">Audio file(s) from Cloud Object Storage</p>
+                            </div>
+                            <div class="bx--btn-set">
+                                <button class="bx--btn bx--btn--ghost bx--btn--sm" id="clickBtn2" onclick="getConvertedFiles()" type="button">Click
+                                    to Refresh
+                                    <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                        style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
+                                        class="bx--btn__icon" width="16" height="16" viewBox="0 0 32 32"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M12 10H6.78A11 11 0 0 1 27 16h2A13 13 0 0 0 6 7.68V4H4v8h8zM20 22h5.22A11 11 0 0 1 5 16H3a13 13 0 0 0 23 8.32V28h2V20H20z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div id="refresh2">
+                                <div data-inline-loading class="bx--inline-loading" role="alert" aria-live="assertive">
+                                    <div class="bx--inline-loading__animation">
+                                        <div data-inline-loading-spinner class="bx--loading bx--loading--small">
+                                            <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+                                                <circle class="bx--loading__background" cx="0" cy="0" r="26.8125" />
+                                                <circle class="bx--loading__stroke" cx="0" cy="0" r="26.8125" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <p data-inline-loading-text-active class="bx--inline-loading__text">Refreshing...
+                                    </p>
+                                </div>
+                            </div>
+                            <br>
+                            <table class="bx--data-table  bx--data-table--compact " id="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <span class="bx--table-header-label">File Name</span>
+                                        </th>
+                                        <th>
+                                            <span class="bx--table-header-label">Size</span>
+                                        </th>
+                                        <th>
+                                            <span class="bx--table-header-label">Type</span>
+                                        </th>
+                                        <th>
+                                            <span class="bx--table-header-label">Delete</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                            <br>
+
+                            <div id="audio" name="audio">
+
+                            </div>
+                            <br>
+                            <h4>Step 2</h4>
+                            <div class="bx--form-item">
+                                <strong class="bx--file--label">Upload the Corpus file</strong>
+                                <p class="bx--label-description">Corpus file is a textual description of the training audio data
+                                </p>
+
+                                <form enctype="multipart/form-data">
+                                    <div class="bx--file" data-file data-file-demo-state-manager>
+                                        <label for="file-uploader" class="bx--file-browse-btn" role="button" tabindex="0">
+                                            <div data-file-drop-container class="bx--file__drop-container"> Drag and
+                                                drop
+                                                files
+                                                here or click here to upload
+                                                <input type="file" class="bx--file-input" id="file-uploader"
+                                                    name="video" accept="text/*" data-file-uploader
+                                                    data-target="[data-file-container]" multiple />
+                                            </div>
+                                        </label>
+                                        <div data-file-container id="myFiles" name="myFiles" class="bx--file-container">
+
+                                        </div>
+                                        <br>
+                                        <div class="bx--btn-set">
+                                            <div>
+                                                <button class="bx--btn bx--btn--primary" id="Upload" name="Upload" value="Upload" type="button">Upload
+                                                    <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                                        style="will-change: transform;"
+                                                        xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon"
+                                                        width="16" height="16" viewBox="0 0 32 32" aria-hidden="true">
+                                                        <path d="M5 6.6l1.2 1.1L11 3v13h2V3l4.8 4.7L19 6.6 12 0z">
+                                                        </path>
+                                                        <path d="M22 14v6H2v-6H0v10H24V14z"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div id="uploaded2">
+                                                <div class="bx--file__selected-file">
+                                                    <p class="bx--file-filename">File(s) uploaded</p>
+                                                    <span data-for="prepopulated-file-uploader" class="bx--file__state-container">
+                                                        <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                                            style="will-change: transform;"
+                                                            xmlns="http://www.w3.org/2000/svg" class="bx--file-complete"
+                                                            width="16" height="16" viewBox="0 0 16 16"
+                                                            aria-hidden="true">
+                                                            <path
+                                                                d="M8,1C4.1,1,1,4.1,1,8c0,3.9,3.1,7,7,7s7-3.1,7-7C15,4.1,11.9,1,8,1z M7,11L4.3,8.3l0.9-0.8L7,9.3l4-3.9l0.9,0.8L7,11z">
+                                                            </path>
+                                                            <path d="M7,11L4.3,8.3l0.9-0.8L7,9.3l4-3.9l0.9,0.8L7,11z"
+                                                                data-icon-path="inner-path" opacity="0"></path>
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div id="uploading2">
+                                                <div class="bx--file__selected-file">
+                                                    <p class="bx--file-filename">Uploading file(s)</p>
+                                                    <span data-for="prepopulated-file-uploader" class="bx--file__state-container">
+                                                        <div class="bx--inline-loading__animation">
+                                                            <div data-inline-loading-spinner=""
+                                                                class="bx--loading bx--loading--small">
+                                                                <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+                                                                    <circle class="bx--loading__background" cx="0"
+                                                                        cy="0" r="26.8125">
+                                                                    </circle>
+                                                                    <circle class="bx--loading__stroke" cx="0" cy="0"
+                                                                        r="26.8125">
+                                                                    </circle>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br>
+
+                                        <div id="error2">
+                                            <div class="bx--file__selected-file bx--file__selected-file--invalid" data-invalid>
+                                                <p class="bx--file-filename">Error uploading file</p>
+                                                <span data-for="prepopulated-file-uploader" class="bx--file__state-container">
+                                                    <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                                        style="will-change: transform;"
+                                                        xmlns="http://www.w3.org/2000/svg" class="bx--file--invalid"
+                                                        width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                                                        <path
+                                                            d="M8,1C4.2,1,1,4.2,1,8s3.2,7,7,7s7-3.1,7-7S11.9,1,8,1z M7.5,4h1v5h-1C7.5,9,7.5,4,7.5,4z M8,12.2 c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8c0.4,0,0.8,0.4,0.8,0.8S8.4,12.2,8,12.2z">
+                                                        </path>
+                                                        <path
+                                                            d="M7.5,4h1v5h-1C7.5,9,7.5,4,7.5,4z M8,12.2c-0.4,0-0.8-0.4-0.8-0.8s0.3-0.8,0.8-0.8 c0.4,0,0.8,0.4,0.8,0.8S8.4,12.2,8,12.2z"
+                                                            data-icon-path="inner-path" opacity="0"></path>
+                                                    </svg>
+                                                </span>
+                                                <div class="bx--form-requirement">
+                                                    <div class="bx--form-requirement__title">Either no File is selected or File size exceeds limit.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="bx--col-md-3">
+                    <div class="outside">
+                        <div class="inside">
+                            <h4>Step 3</h4>
+                            <div class="bx--form-item">
+                                <strong class="bx--file--label">Preview Audios and Corpus file in Watson
+                                    Speech-To-Text</strong>
+                                <p class="bx--label-description">Note: Corpus file is used to train Language model and Audio files are used to train Acoustic model</p>
+                                <div class="bx--btn-set">
+                                    <button class="bx--btn bx--btn--ghost bx--btn--sm" id="clickBtn3" onclick="refresh()" type="button">Click
+                                        to Refresh
+                                        <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                            style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
+                                            class="bx--btn__icon" width="16" height="16" viewBox="0 0 32 32"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M12 10H6.78A11 11 0 0 1 27 16h2A13 13 0 0 0 6 7.68V4H4v8h8zM20 22h5.22A11 11 0 0 1 5 16H3a13 13 0 0 0 23 8.32V28h2V20H20z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div id="refresh3">
+                                    <div data-inline-loading class="bx--inline-loading" role="alert" aria-live="assertive">
+                                        <div class="bx--inline-loading__animation">
+                                            <div data-inline-loading-spinner class="bx--loading bx--loading--small">
+                                                <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+                                                    <circle class="bx--loading__background" cx="0" cy="0" r="26.8125" />
+                                                    <circle class="bx--loading__stroke" cx="0" cy="0" r="26.8125" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <p data-inline-loading-text-active class="bx--inline-loading__text" id="refreshMsg">
+                                            Refreshing...</p>
+                                    </div>
+                                </div>
+                                <br>
+                                <strong class="bx--file--label" id="corpusDetails">Corpus File Details</strong>
+                                <br>
+                                <table class="bx--data-table  bx--data-table--compact " id="corpusTable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span class="bx--table-header-label">Name</span>
+                                            </th>
+                                            <th>
+                                                <span class="bx--table-header-label">Out of Vocab Words</span>
+                                            </th>
+                                            <th>
+                                                <span class="bx--table-header-label">Total Words</span>
+                                            </th>
+                                            <th>
+                                                <span class="bx--table-header-label">Status</span>
+                                            </th>
+                                            <th>
+                                                <span class="bx--table-header-label">Delete</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                                <br>
+                                <strong class="bx--file--label" id="audioDetails">Audio Files Details</strong>
+                                <br>
+                                <table class="bx--data-table  bx--data-table--compact " id="audiosTable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span class="bx--table-header-label">Name</span>
+                                            </th>
+                                            <th>
+                                                <span class="bx--table-header-label">Duration</span>
+                                            </th>
+                                            <th>
+                                                <span class="bx--table-header-label">Status</span>
+                                            </th>
+                                            <th>
+                                                <span class="bx--table-header-label">Delete</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                                <br>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bx--col-md-3">
+                    <div class="outside">
+                        <div class="inside">
+                            <h4>Step 4</h4>
+                            <div class="bx--form-item">
+                                <strong class="bx--file--label">Train Watson Speech-To-Text Model</strong>
+                                <p class="bx--label-description">If a model's status is <code>ready</code>, then this indicates that the model contains data and is ready to be trained. A status of
+                                    <code>available</code> indicates that the model is trained and ready to use.</p>
+                            </div>
+                            <div class="bx--btn-set">
+                                <button class="bx--btn bx--btn--ghost bx--btn--sm" id="clickBtn4" onclick="refreshModels()" type="button">Click
+                                    to Refresh
+                                    <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                        style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
+                                        class="bx--btn__icon" width="16" height="16" viewBox="0 0 32 32"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M12 10H6.78A11 11 0 0 1 27 16h2A13 13 0 0 0 6 7.68V4H4v8h8zM20 22h5.22A11 11 0 0 1 5 16H3a13 13 0 0 0 23 8.32V28h2V20H20z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div id="refresh4">
+                                <div data-inline-loading class="bx--inline-loading" role="alert" aria-live="assertive">
+                                    <div class="bx--inline-loading__animation">
+                                        <div data-inline-loading-spinner class="bx--loading bx--loading--small">
+                                            <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+                                                <circle class="bx--loading__background" cx="0" cy="0" r="26.8125" />
+                                                <circle class="bx--loading__stroke" cx="0" cy="0" r="26.8125" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <p data-inline-loading-text-active class="bx--inline-loading__text">getting status...
+                                    </p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="bx--row">
+                                <div class="bx--col-sm-2">
+                                    <div class="outside">
+                                        <div class="inside">
+                                            <h4>Language Model Status:</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bx--col-sm-1">
+                                    <div class="outside">
+                                        <div class="inside">
+                                            <div class="bx--tile bx--tile--sm">
+                                                <h4 id="remove1">N/A</h4>
+                                                <div id="training1">
+                                                    <div data-inline-loading class="bx--inline-loading" role="alert" aria-live="assertive">
+                                                        <div class="bx--inline-loading__animation">
+                                                            <div data-inline-loading-spinner class="bx--loading bx--loading--small">
+                                                                <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+                                                                    <circle class="bx--loading__background" cx="0"
+                                                                        cy="0" r="26.8125" />
+                                                                    <circle class="bx--loading__stroke" cx="0" cy="0"
+                                                                        r="26.8125" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <h4 data-inline-loading-text-active class="bx--inline-loading__text" id="trainingMsg1">
+                                                            Refreshing...</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bx--col-sm-1">
+                                    <div class="outside">
+                                        <div class="inside">
+                                            <div id="BtnTrainAcousticModel">
+                                                <button class="bx--btn bx--btn--tertiary" onclick="trainLanguageModel()" type="button">Train
+                                                    Model
+                                                    <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                                        style="will-change: transform;"
+                                                        xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon"
+                                                        width="16" height="16" viewBox="0 0 23 23" aria-hidden="true">
+                                                        <path
+                                                            d="M16.3 5.9c-2-1.1-4.3-1.5-6.5-.9-.3.1-.5.5-.4.8.1.3.4.5.8.4 1-.3 2.1-.3 3.1-.1-1.6.8-3.4 2.7-4.9 5.2-.5.9-1 1.9-1.3 2.9-.4-.4-.7-.8-1-1.2-.8-1.3-.9-2.4-.5-3.2.5-.8 1.6-1.3 3.2-1.2.3 0 .6-.3.7-.6 0-.3-.3-.6-.6-.7-2.1-.2-3.6.5-4.4 1.8-.7 1.2-.5 2.8.5 4.4.4.7 1 1.3 1.6 2-.1.5-.2 1-.3 1.4V18c-.7-.9-1.2-1.9-1.5-3-.1-.3-.4-.5-.8-.5-.3.1-.5.4-.5.8.6 2.3 2 4.3 4.1 5.5C9 21.6 10.5 22 12 22c3 0 5.9-1.5 7.5-4.3 2.4-4.1.9-9.4-3.2-11.8zm-6.9 6c2.2-3.8 5-5.6 6.2-4.9 3.5 2 4.7 6.6 2.7 10.1-1 1.7-4.8 1.5-8.3-.5-.8-.4-1.5-1-2.1-1.5.5-1 .9-2.1 1.5-3.2zm-1.1 7.9c-.6-.3-.9-1.3-.7-2.7 0-.2.1-.4.1-.6l1.8 1.2c2.1 1.2 4.2 1.8 6 1.8h.6c-2.2 1.5-5.3 1.7-7.8.3zM3.2 7.6L.9 6.3c-.3-.2-.6-.1-.8.2-.2.3-.1.7.2.8l2.3 1.3c.1.1.2.1.3.1.2 0 .4-.1.5-.3.2-.3.1-.7-.2-.8zM12 3.5c.3 0 .6-.3.6-.6V.6c0-.3-.3-.6-.6-.6s-.6.3-.6.6v2.2c0 .4.3.7.6.7zM17 4.8c.1.1.2.1.3.1.2 0 .4-.1.5-.3l1.2-2c.2-.3.1-.7-.2-.8-.3-.2-.7-.1-.9.2l-1.2 2c-.1.2 0 .6.3.8zM7 4.8c-.1 0-.2.1-.3.1-.2 0-.4-.1-.5-.3L5 2.6c-.1-.3 0-.7.3-.9.3-.2.7-.1.9.2l1.2 2c0 .3-.1.7-.4.9zM23.9 6.5c-.2-.3-.6-.4-.9-.2l-2.3 1.3c-.3.2-.4.6-.2.9.1.2.3.3.5.3.1 0 .2 0 .3-.1l2.3-1.3c.4-.2.5-.6.3-.9z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            <br>
+                            <div class="bx--row">
+                                <div class="bx--col-sm-2">
+                                    <div class="outside">
+                                        <div class="inside">
+                                            <h4>Acoustic Model Status:</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bx--col-sm-1">
+                                    <div class="outside">
+                                        <div class="inside">
+                                            <div class="bx--tile bx--tile--sm">
+                                                <h4 id="remove2">N/A</h4>
+                                                <div id="training2">
+                                                    <div data-inline-loading class="bx--inline-loading" role="alert" aria-live="assertive">
+                                                        <div class="bx--inline-loading__animation">
+                                                            <div data-inline-loading-spinner class="bx--loading bx--loading--small">
+                                                                <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+                                                                    <circle class="bx--loading__background" cx="0"
+                                                                        cy="0" r="26.8125" />
+                                                                    <circle class="bx--loading__stroke" cx="0" cy="0"
+                                                                        r="26.8125" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <h4 data-inline-loading-text-active class="bx--inline-loading__text" id="trainingMsg2">
+                                                            Refreshing...</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bx--col-sm-1">
+                                    <div class="outside">
+                                        <div class="inside">
+                                            <div id="btnTrainLanguageModel">
+                                                <button class="bx--btn bx--btn--tertiary" onclick="trainAcousticModel()" type="button">Train
+                                                    Model
+                                                    <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                                        style="will-change: transform;"
+                                                        xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon"
+                                                        width="16" height="16" viewBox="0 0 23 23" aria-hidden="true">
+                                                        <path
+                                                            d="M16.3 5.9c-2-1.1-4.3-1.5-6.5-.9-.3.1-.5.5-.4.8.1.3.4.5.8.4 1-.3 2.1-.3 3.1-.1-1.6.8-3.4 2.7-4.9 5.2-.5.9-1 1.9-1.3 2.9-.4-.4-.7-.8-1-1.2-.8-1.3-.9-2.4-.5-3.2.5-.8 1.6-1.3 3.2-1.2.3 0 .6-.3.7-.6 0-.3-.3-.6-.6-.7-2.1-.2-3.6.5-4.4 1.8-.7 1.2-.5 2.8.5 4.4.4.7 1 1.3 1.6 2-.1.5-.2 1-.3 1.4V18c-.7-.9-1.2-1.9-1.5-3-.1-.3-.4-.5-.8-.5-.3.1-.5.4-.5.8.6 2.3 2 4.3 4.1 5.5C9 21.6 10.5 22 12 22c3 0 5.9-1.5 7.5-4.3 2.4-4.1.9-9.4-3.2-11.8zm-6.9 6c2.2-3.8 5-5.6 6.2-4.9 3.5 2 4.7 6.6 2.7 10.1-1 1.7-4.8 1.5-8.3-.5-.8-.4-1.5-1-2.1-1.5.5-1 .9-2.1 1.5-3.2zm-1.1 7.9c-.6-.3-.9-1.3-.7-2.7 0-.2.1-.4.1-.6l1.8 1.2c2.1 1.2 4.2 1.8 6 1.8h.6c-2.2 1.5-5.3 1.7-7.8.3zM3.2 7.6L.9 6.3c-.3-.2-.6-.1-.8.2-.2.3-.1.7.2.8l2.3 1.3c.1.1.2.1.3.1.2 0 .4-.1.5-.3.2-.3.1-.7-.2-.8zM12 3.5c.3 0 .6-.3.6-.6V.6c0-.3-.3-.6-.6-.6s-.6.3-.6.6v2.2c0 .4.3.7.6.7zM17 4.8c.1.1.2.1.3.1.2 0 .4-.1.5-.3l1.2-2c.2-.3.1-.7-.2-.8-.3-.2-.7-.1-.9.2l-1.2 2c-.1.2 0 .6.3.8zM7 4.8c-.1 0-.2.1-.3.1-.2 0-.4-.1-.5-.3L5 2.6c-.1-.3 0-.7.3-.9.3-.2.7-.1.9.2l1.2 2c0 .3-.1.7-.4.9zM23.9 6.5c-.2-.3-.6-.4-.9-.2l-2.3 1.3c-.3.2-.4.6-.2.9.1.2.3.3.5.3.1 0 .2 0 .3-.1l2.3-1.3c.4-.2.5-.6.3-.9z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="bx--btn bx--btn--primary" style="display: none;" id="showModal" type="button" data-modal-target="#modal-pyu0ribosn">Show
+                                    modal</button>
+                                <div data-modal id="modal-pyu0ribosn" class="bx--modal " role="dialog" aria-modal="true" aria-labelledby="modal-pyu0ribosn-label" aria-describedby="modal-pyu0ribosn-heading" tabindex="-1">
+                                    <div class="bx--modal-container">
+                                        <div class="bx--modal-header">
+                                            <p class="bx--modal-header__heading bx--type-beta" id="modal-pyu0ribosn-heading">Cloud Object Storage Configuration</p>
+                                            <button class="bx--modal-close" type="button" data-modal-close aria-label="close modal">
+                                                <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                                                    style="will-change: transform;" xmlns="http://www.w3.org/2000/svg"
+                                                    class="bx--modal-close__icon" width="16" height="16"
+                                                    viewBox="0 0 16 16" aria-hidden="true">
+                                                    <path
+                                                        d="M12 4.7L11.3 4 8 7.3 4.7 4 4 4.7 7.3 8 4 11.3 4.7 12 8 8.7 11.3 12 12 11.3 8.7 8z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                        <!-- Note: Modals with content that scrolls, at any viewport, requires `tabindex="0"` on the `bx--modal-content` element -->
+
+                                        <div class="bx--modal-content bx--modal-content--with-form">
+                                            <div class="bx--form-item">
+                                                <label for="text-input-pyu0ribosn" class="bx--label">Bucket Name</label>
+                                                <input id="bucket-name-setup" type="text" class="bx--text-input" placeholder="Enter the Cloud Object Storage bucket name" data-modal-primary-focus>
+                                            </div>
+                                            <br>
+                                            <br>
+                                        </div>
+                                        <div class="bx--modal-content--overflow-indicator"></div>
+
+                                        <div class="bx--modal-footer">
+                                            <button class="bx--btn bx--btn--secondary" type="button" data-modal-close>Close</button>
+                                            <button class="bx--btn bx--btn--primary" id="cos-bkt" name="cos-bkt" type="button" onclick="setupCOS()" data-modal-close>Submit</button>
+                                        </div>
+                                    </div>
+                                    <!-- Note: focusable span allows for focus wrap feature within Modals -->
+                                    <span tabindex="0"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="static/carbon-components/scripts/carbon-components.min.js"></script>
+<script src="static/javascript/script.js"></script>
+
+</html>

@@ -1,0 +1,23 @@
+.custom-container {
+    margin-top: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.darker {
+    border-color: #ccc;
+    background-color: #fff;
+}
+
+.time-right {
+    float: right;
+}
+
+.time-left {
+    float: left;
+}
+
+.scrollClass {
+    height: 600px;
+    overflow-y: scroll;
+}
