@@ -1,10 +1,10 @@
 # Short Title
 
-Extract audio from video
+Build a custom Speech to Text model with diarization capabilites
 
 # Long Title
 
-Extract audio from video and store it in cloud object storage
+Build a custom Speech to Text model and transcribe audio to detect multiple speakers from the audio
 
 
 # Author
@@ -15,15 +15,15 @@ Extract audio from video and store it in cloud object storage
 
 ### Github repo
 
-* https://github.com/IBM/convert-video-to-audio/
+* https://github.com/IBM/build-custom-stt-model-with-diarization
 
 
 ### Video Link
-* https://youtu.be/zbhDULZGJEE
+* https://www.youtube.com/watch?v=xgkYRJdBQ8E
 
 # Summary
 
-In this code pattern, given a video recording of the virtual meeting or a virtual classroom, we will extract textual insights from them to better understand the key pointer and summary of the meeting or lecture.
+In this code pattern, given an audio recording of the virtual meeting or a virtual classroom, we will train a custom Speech To Text model and transcribe the audio to get diarized textual output.
 
 # Technologies
 
@@ -42,20 +42,22 @@ With the help of Technology, employees can continue to collaborate and be involv
 <!--add an image in this path-->
 ![architecture](doc/source/images/architecture.png)
 
-1. User uploads video file to the application.
+1. User uploads corpus file to the application
 
-2. The [FFMPEG](https://www.ffmpeg.org/) library extracts the audio from the video.
+2. The extracted audio from the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio) is retrived from Cloud Object Storage
 
-3. The extracted audio file is stored in Cloud Object Storage.
+3. The corpus file as well as the extracted audio are uploaded to Watson Speech To Text to train the custom model
+
+4. The Downloaded audio file from the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio) is transcribed with the custom Speech To Text model and the text file is stored in Cloud Object Storage
 
 # Instructions
 
-> Find the detailed steps in the [README](https://github.com/IBM/convert-video-to-audio/blob/master/README.md) file.
+> Find the detailed steps in the [README](https://github.com/IBM/build-custom-stt-model-with-diarization/blob/master/README.md) file.
 
 
 1. Clone the repo
 
-2. Create Cloud Object Storage Service
+2. Create Watson Speech To Text Service
 
 3. Add the Credentials to the Application
 
@@ -64,5 +66,7 @@ With the help of Technology, employees can continue to collaborate and be involv
 5. Run the Application
 
 # Components and services
+
+* [Speech to Text](https://cloud.ibm.com/catalog/services/speech-to-text): The Speech to Text service converts the human voice into the written word. It can be used anywhere there is a need to bridge the gap between the spoken word and their written form, including voice control of embedded systems, transcription of meetings and conference calls, and dictation of email and notes.
 
 * [Object Storage](https://cloud.ibm.com/catalog/services/cloud-object-storage): IBM Cloud Object Storage is a highly scalable cloud storage service, designed for high durability, resiliency and security. Store, manage and access your data via our self-service portal and RESTful APIs. Connect applications directly to Cloud Object Storage use other IBM Cloud Services with your data.

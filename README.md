@@ -24,13 +24,13 @@ When you have completed this code pattern, you will understand how to:
 <!--Optionally, add flow steps based on the architecture diagram-->
 ## Flow
 
-1. User uploads corpus file to the application.
+1. User uploads corpus file to the application
 
-2. The extracted audio from the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio) is retrived from Cloud Object Storage.
+2. The extracted audio from the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio) is retrived from Cloud Object Storage
 
-3. The corpus file as well as the extracted audio are uploaded to Watson Speech To Text to train the custom model.
+3. The corpus file as well as the extracted audio are uploaded to Watson Speech To Text to train the custom model
 
-4. The Downloaded audio file from the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio) is transcribed with the custom Speech To Text model and the text file is stored in Cloud Object Storage.
+4. The Downloaded audio file from the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio) is transcribed with the custom Speech To Text model and the text file is stored in Cloud Object Storage
 
 <!--Optionally, update this section when the video is created-->
 # Watch the Video
@@ -39,24 +39,24 @@ When you have completed this code pattern, you will understand how to:
 
 # Pre-requisites
 
-1. [IBM Cloud](https://cloud.ibm.com) Account.
+1. [IBM Cloud](https://cloud.ibm.com) Account
 
-2. [Docker](https://www.docker.com/products/docker-desktop).
+2. [Docker](https://www.docker.com/products/docker-desktop)
 
-3. [Python](https://www.python.org/downloads/release/python-365/).
+3. [Python](https://www.python.org/downloads/release/python-365/)
 
 
 # Steps
 
-1. [Clone the repo](#1-clone-the-repo).
+1. [Clone the repo](#1-clone-the-repo)
 
-2. [Create Watson Speech To Text Service](#2-create-watson-speech-to-text-service).
+2. [Create Watson Speech To Text Service](#2-create-watson-speech-to-text-service)
 
-3. [Add the Credentials to the Application](#3-add-the-credentials-to-the-application).
+3. [Add the Credentials to the Application](#3-add-the-credentials-to-the-application)
 
-4. [Deploy the Application](#4-deploy-the-application).
+4. [Deploy the Application](#4-deploy-the-application)
 
-5. [Run the Application](#5-run-the-application).
+5. [Run the Application](#5-run-the-application)
 
 
 ### 1. Clone the repo
@@ -89,7 +89,7 @@ $ git clone https://github.com/IBM/build-custom-stt-model-with-diarization
 
 - In the repo parent folder, open the **credentials1.json** file and paste the credentials copied in [step 2](#2-create-watson-speech-to-text-service) and finally save the file.
 
-### 4. Run the Application
+### 4. Deploy the Application
 
 <details><summary><b>With Docker Installed</b></summary>
 
@@ -141,7 +141,7 @@ $ python app.py
 
 ![sample_output](doc/source/images/sample-output.png)
 
-- We can Train the custom Speech To Text model in just 4 steps:
+#### We can Train the custom Speech To Text model in just 4 steps:
 
 1. Delete the Audio files `earnings-call-test-data.mp4` & `earnings-call-Q-and-A.mp4` as shown.
 
@@ -175,6 +175,38 @@ $ python app.py
 
 - The custom Speech To Text model is now ready to use.
 
+#### Transcribe audio to get Diarized textual output as follows:
+
+- Click on the **Transcribe Text** and upload the `earnings-call-Q-and-A.flac` which you will have downloaded in the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). Verify the Language Speech-To-Text Model and Acoustic Speech-To-Text model and click on `Transcribe`.
+
+>NOTE: It will take about 1-2 Min to transcribe the `earnings-call-Q-and-A.flac` audio file be patient.
+
+![](doc/source/images/transcribestep1.gif)
+
+- Once the audio is transcribed you can see that the Speech To Text model has detected multiple speakers `Speaker 0` and `Speaker 1` from the audio file.
+
+![](doc/source/images/diarized-output.png)
+
+> The data that we have provided to train the model is just `24:40` Minutes and hence the Transcription and Diarization may not be 100% accurate. Provided more training data, the accuracy will increase.
+
+- Click on `Save Text to Cloud Object Storage` as the transcribed text file will be consumed in the [next code pattern of the series](https://github.com/IBM/use-advanced-nlp-and-tone-analyser-to-analyse-speaker-insights) to extract insights.
+
+![](doc/source/images/transcribestep2.gif)
+
+- Similarly upload the `earnings-call-test-data.flac` which you will have downloaded in the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). Verify the Language Speech-To-Text Model and Acoustic Speech-To-Text model and click on `Transcribe`.
+
+>NOTE: It will take about 15-20 Min to transcribe the `earnings-call-test-data.flac` audio file be patient.
+
+![](doc/source/images/transcribestep1b.gif)
+
+- Since there is only one speaker in `earnings-call-test-data.flac`, you can see that the model has detected a single speaker `Speaker 0`.
+
+![](doc/source/images/diarized-output2.png)
+
+- Click on `Save Text to Cloud Object Storage` as the transcribed text file will be consumed in the [next code pattern of the series](https://github.com/IBM/use-advanced-nlp-and-tone-analyser-to-analyse-speaker-insights) to extract insights.
+
+![](doc/source/images/transcribestep2b.gif)
+
 More About the dataset:
 For the code pattern demonstration, we have considered `IBM Earnings Call Q1 2019` Webex recording. The data has 40min of IBM Revenue discussion, and 20+ min of Q & A at the end of the recording. We have split the data into 3 parts:
 
@@ -186,6 +218,10 @@ This is the full discussion from the recording which will be used to test the cu
 
 - `earnings-call-Q-and-A.mp4` - (Duration - 2:40)
 This is a part of Q & A's asked at the end of the meeting. The purpose of this data is to demonstrate how Watson Speech To Text can detect different speakers from an audio which will be demonstrated in the second code pattern from the series.
+
+In the [next code pattern of the series](https://github.com/IBM/use-advanced-nlp-and-tone-analyser-to-analyse-speaker-insights) we will learn how extract meaningful insights from the transcribed text files.
+
+Thus Providing a set of open source tools, backed by IBM Cloud and Watson Services, will enable a better remote employee engagement pulse and will also enable educators to make content available for their students more easily.
 
 <!-- keep this -->
 ## License
