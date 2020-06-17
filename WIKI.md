@@ -23,7 +23,7 @@ Build a custom Speech to Text model and transcribe audio to detect multiple spea
 
 # Summary
 
-In this code pattern, given an audio recording of the virtual meeting or a virtual classroom, we will train a custom Speech To Text model and transcribe the audio to get diarized textual output.
+In this code pattern, Given a corpus file and audio recordings of a meeting or classroom, we train custom language and acoustic speech to text model to transcribe audios to get diarized textual output. 
 
 # Technologies
 
@@ -35,7 +35,7 @@ In this code pattern, given an audio recording of the virtual meeting or a virtu
 
 Part of the World Health Organization's guidance on limiting further spread of COVID-19 is to practice social distancing. As a result, Companies in most affected areas are taking precautionary measures by encouraging Work from Home and Educational Institutes are closing their facilities. Employees working from home must be aware of the happenings in their company and need to collaborate with their team, students at home must be up to date with their education.
 
-With the help of Technology, employees can continue to collaborate and be involved into their work with Virtual Meetings, Schools and teachers can continue to engage with their students through Virtual Classrooms.
+With the help of technology, employees can continue to collaborate and be involved into their work with virtual meetings, schools and teachers can continue to engage with their students through virtual classrooms. These meetings can be recorded and deriving insights from these recordings can be beneficial for the end users. Towards this goal, we will be extracting audio from video recordings which we will be used for deriving insights.
 
 # Flow
 

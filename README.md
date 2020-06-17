@@ -8,9 +8,7 @@ Part of the World Health Organization's guidance on limiting further spread of C
 
 With the help of Technology, employees can continue to collaborate and be involved into their work with Virtual Meetings, Schools and teachers can continue to engage with their students through Virtual Classrooms.
 
-In this code pattern, we will consume the extracted audio from [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio) to train a custom Speech To Text model and use the model to transcribe text.
-
-Given a video recording of the virtual meeting or a virtual classroom, textual insights are extracted from them to better understand the key pointer and summary of the meeting or lecture.
+In this code pattern, Given a corpus file and audio recordings of a meeting or classroom, we train custom language and acoustic speech to text model to transcribe audios to get diarized textual output. 
 
 When you have completed this code pattern, you will understand how to:
 
