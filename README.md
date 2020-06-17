@@ -67,6 +67,29 @@ Clone the [`build-custom-stt-model-with-diarization`](https://github.com/IBM/bui
 $ git clone https://github.com/IBM/build-custom-stt-model-with-diarization
 ```
 
+We will be using the following datasets:
+
+1. `earnings-call-train-data.flac` - To train the speech to text model.
+
+2. `earnings-call-test-data.flac` - To test the speech to text model.
+
+3. `earnings-call-Q-and-A.flac` - To demonstrate the diarization capabilities.
+
+
+### About the dataset
+
+For the code pattern demonstration, we have considered `IBM Earnings Call Q1 2019` Webex recording. The data has 40min of IBM Revenue discussion, and 20+ min of Q & A at the end of the recording. We have split the data into 3 parts:
+
+- `earnings-call-train-data.mp4` - (Duration - 24:40)
+This is the initial part of the discussion from the recording which we will be using to train the custom Watson Speech To Text model in the second code pattern from the series.
+
+- `earnings-call-test-data.mp4` - (Duration - 36:08)
+This is the full discussion from the recording which will be used to test the custom Speech To Text model and also to get transcript for further analysis in the third code patten from the series.
+
+- `earnings-call-Q-and-A.mp4` - (Duration - 2:40)
+This is a part of Q & A's asked at the end of the meeting. The purpose of this data is to demonstrate how Watson Speech To Text can detect different speakers from an audio which will be demonstrated in the second code pattern from the series.
+
+
 ### 2. Create Watson Speech To Text Service
 
 >NOTE: A **Standard account** is required to train a custom Speech To Text Model.
@@ -75,7 +98,7 @@ $ git clone https://github.com/IBM/build-custom-stt-model-with-diarization
 
 ![Speech-to-text-service](doc/source/images/stt-service.png)
 
-- In Speech To Text Service Resource Page, Click on **Services Credentials**
+- In Speech To Text Dashboard, Click on **Services Credentials**
 
 ![](doc/source/images/service-credentials.png)
 
@@ -207,21 +230,9 @@ $ python app.py
 
 ![](doc/source/images/transcribestep2b.gif)
 
-More About the dataset:
-For the code pattern demonstration, we have considered `IBM Earnings Call Q1 2019` Webex recording. The data has 40min of IBM Revenue discussion, and 20+ min of Q & A at the end of the recording. We have split the data into 3 parts:
+### Summary
 
-- `earnings-call-train-data.mp4` - (Duration - 24:40)
-This is the initial part of the discussion from the recording which we will be using to train the custom Watson Speech To Text model in the second code pattern from the series.
-
-- `earnings-call-test-data.mp4` - (Duration - 36:08)
-This is the full discussion from the recording which will be used to test the custom Speech To Text model and also to get transcript for further analysis in the third code patten from the series.
-
-- `earnings-call-Q-and-A.mp4` - (Duration - 2:40)
-This is a part of Q & A's asked at the end of the meeting. The purpose of this data is to demonstrate how Watson Speech To Text can detect different speakers from an audio which will be demonstrated in the second code pattern from the series.
-
-In the [next code pattern of the series](https://github.com/IBM/use-advanced-nlp-and-tone-analyser-to-analyse-speaker-insights) we will learn how extract meaningful insights from the transcribed text files.
-
-Thus Providing a set of open source tools, backed by IBM Cloud and Watson Services, will enable a better remote employee engagement pulse and will also enable educators to make content available for their students more easily.
+We have seen how to build a custom speech to text model to transcribe audio and get diarized textual output. In the [next code pattern of the series](https://github.com/IBM/use-advanced-nlp-and-tone-analyser-to-analyse-speaker-insights) we will learn how extract meaningful insights from the transcribed text files.
 
 <!-- keep this -->
 ## License
