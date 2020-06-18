@@ -4,11 +4,14 @@
 
 This Code Pattern is part of the series [Extracting Textual Insights from Videos with IBM Watson]()
 
-Part of the World Health Organization's guidance on limiting further spread of COVID-19 is to practice social distancing. As a result, Companies in most affected areas are taking precautionary measures by encouraging Work from Home and Educational Institutes are closing their facilities. Employees working from home must be aware of the happenings in their company and need to collaborate with their team, students at home must be up to date with their education.
 
-With the help of Technology, employees can continue to collaborate and be involved into their work with Virtual Meetings, Schools and teachers can continue to engage with their students through Virtual Classrooms.
+In this code pattern, given a corpus file and audio recordings of a meeting or classroom, we train custom language and acoustic speech to text model to transcribe audios to get diarized textual output.
 
-In this code pattern, Given a corpus file and audio recordings of a meeting or classroom, we train custom language and acoustic speech to text model to transcribe audios to get diarized textual output. 
+>Speaker Diarization is a process of extracting multiple speakers information from an audio. [Learn more](https://en.wikipedia.org/wiki/Speaker_diarisation)
+
+>Custom language model is built to recognize the **out of vocabulary**  words from the audio. [Learn more](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate)
+
+>Custom accoustic model is built to recognize the **accent** of the speaker from the audio. [Learn more](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-acoustic)
 
 When you have completed this code pattern, you will understand how to:
 
@@ -65,7 +68,7 @@ Clone the [`build-custom-stt-model-with-diarization`](https://github.com/IBM/bui
 $ git clone https://github.com/IBM/build-custom-stt-model-with-diarization
 ```
 
-We will be using the following datasets:
+We will be using the following datasets from the Cloud Object Storage:
 
 1. `earnings-call-train-data.flac` - To train the speech to text model.
 
@@ -90,25 +93,26 @@ This is a part of Q & A's asked at the end of the meeting. The purpose of this d
 
 ### 2. Create Watson Speech To Text Service
 
->NOTE: A **Standard account** is required to train a custom Speech To Text Model.
+>NOTE: A **Standard account** is required to train a custom Speech To Text Model. There are three types of plans, Lite (FREE), Standard and Premium (PAID) for more info visit https://cloud.ibm.com/catalog/services/speech-to-text
 
-- Create a Standard [Watson Speech To Text Service](https://cloud.ibm.com/catalog/services/speech-to-text) on IBM Cloud.
+- On IBM Cloud, create a [Watson Speech To Text Service](https://cloud.ibm.com/catalog/services/speech-to-text), under `Select a pricing plan` select `Standard` and click on `create` as shown.
 
 ![Speech-to-text-service](doc/source/images/stt-service.png)
 
-- In Speech To Text Dashboard, Click on **Services Credentials**
+- In Speech To Text Dashboard, Click on `Services Credentials`
 
 ![](doc/source/images/service-credentials.png)
 
-- Click on **New credential** and add a service credential as shown. Once the credential is created, copy and save the credentials in a text file for using it in later steps in this code pattern.
+- Click on `New credential` and add a service credential as shown. Once the credential is created, copy and save the credentials in a text file for using it in later steps in this code pattern.
 
 ![](doc/source/images/create-stt-credentials.gif)
 
 ### 3. Add the Credentials to the Application
 
-- In the repo parent folder, copy and pate the **credentials.json** file created in [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). This will connect the application to the same Cloud Object Storage Bucket which was created in the first code pattern of the series.
-
 - In the repo parent folder, open the **credentials1.json** file and paste the credentials copied in [step 2](#2-create-watson-speech-to-text-service) and finally save the file.
+
+- In the repo parent folder, copy and paste the **credentials.json** file created in [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). This will connect the application to the same Cloud Object Storage Bucket which was created in the first code pattern of the series.
+
 
 ### 4. Deploy the Application
 
