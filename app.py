@@ -127,10 +127,10 @@ def create_custom_stt_model(model_name, flag):
             print(json.dumps(acoustic_model, indent=2))
             respo = {"message": "custom acoustic model \"{0}\" created!".format(
                 acoustic_model.get('customization_id'))}
-                
+
             global acoustic_customization_id
             acoustic_customization_id = acoustic_model.get('customization_id')
-            
+
             return respo
 
         except ClientError as be:
@@ -150,10 +150,10 @@ def create_custom_stt_model(model_name, flag):
             print(json.dumps(language_model, indent=2))
             respo = {"message": "custom language model \"{0}\" created!".format(
                 language_model.get('customization_id'))}
-                
+
             global language_customization_id
             language_customization_id = language_model.get('customization_id')
-            
+
             return respo
 
         except ClientError as be:
@@ -201,6 +201,7 @@ cos = ibm_boto3.resource("s3",
                          endpoint_url=COS_ENDPOINT
                          )
 
+
 @app.route('/COSBucket',  methods=['GET', 'POST'])
 def setupCOSBucket():
     if request.method == 'POST':
@@ -213,6 +214,7 @@ def setupCOSBucket():
         with open('credentials.json', 'w') as fp:
             json.dump(cred, fp,  indent=2)
         return jsonify({'flag': 0})
+
 
 @app.route('/initCOS')
 def initializeCOS():
@@ -232,13 +234,13 @@ def initializeCOS():
                      bucket_name + "\" does not exists"}
         else:
             respo = {"message": "Bucket \"" + bucket_name + "\" found!"}
-        
+
     except ClientError as be:
         respo = {"message": "CLIENT ERROR: {0}\n".format(be)}
     except Exception as e:
         respo = {"message": " {0}".format(e)}
     print(json.dumps(respo, indent=2))
-    return json.dumps(respo, indent=2)
+    return jsonify(respo)
 
 
 def get_bucket_contents(bucket_name):
@@ -277,7 +279,7 @@ def delete_item(bucket_name, item_name):
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
         print("Unable to delete item: {0}".format(e))
-        
+
 
 def multi_part_upload(bucket_name, item_name, file_path):
     try:
@@ -333,7 +335,7 @@ def uploader():
         print("Unable {0}".format(e))
         myResponse = {"message": str(e)}
 
-    return json.dumps(myResponse, indent=2)
+    return jsonify(myResponse)
 
 
 @app.route('/uploadToSttl')
@@ -348,11 +350,11 @@ def uploadToSttl():
                 allow_overwrite=True
             )
 
-        return {"flag": 1}
+        return jsonify({"flag": 1})
 
     except Exception as e:
         print("Exception Occured -> {0}".format(e))
-        return {"flag": 0, "Exception": "{0}".format(e)}
+        return jsonify({"flag": 0, "Exception": "{0}".format(e)})
 
 
 def scanAvailableAudioFiles():
@@ -367,26 +369,29 @@ def uploadToStta():
         for file in get_bucket_contents(bucket_name):
             if file[0][0] == 'a':
                 audios_COS.append(file[0])
-        
+
         for audios in audios_COS:
             if audios.split('/')[1] in scanAvailableAudioFiles():
-                print('Skipping ... '+ audios.split('/')[1])
+                print('Skipping ... ' + audios.split('/')[1])
             else:
                 with open(app.config["AUDIO_UPLOAD"] + audios.split('/')[1], 'wb') as write_bytes:
                     write_bytes.write(get_item(bucket_name, audios))
 
-        return {"flag": 1}
+        return jsonify({"flag": 1})
 
     except Exception as e:
         print("Exception Occured -> {0}".format(e))
-        return {"flag": 0, "Exception": "{0}".format(e)}
+        return jsonify({"flag": 0, "Exception": "{0}".format(e)})
+
 
 @app.route('/uploadSTT')
 def uploadSTT():
     try:
         for audiosToUpload in scanAvailableAudioFiles():
+            if audiosToUpload == ".DS_Store":
+                continue
             with open(app.config["AUDIO_UPLOAD"] + audiosToUpload, 'rb') as audio_file:
-                print('Uploading '+ audiosToUpload + 'to Speech-to-text ...') 
+                print('Uploading ' + audiosToUpload + ' to Speech-to-text ...')
                 speech_to_text.add_audio(
                     acoustic_customization_id,
                     audiosToUpload,
@@ -395,12 +400,12 @@ def uploadSTT():
                     content_type='audio/flac'
                 )
                 print('Done uploading')
-        
-        return {"flag" : 1}
+
+        return jsonify({"flag": 1})
     except Exception as e:
         print("Exception Occured -> {0}".format(e))
-        return {"flag": 0, "Exception": "{0}".format(e)}
-        
+        return jsonify({"flag": 0, "Exception": "{0}".format(e)})
+
 
 ''' Method to delete files from Cloud Object Storage '''
 
@@ -420,7 +425,7 @@ def deleteFiles(fileName):
     except OSError as err:
         myFlag = {"flag": 1}
 
-    return json.dumps(myFlag, indent=2)
+    return jsonify(myFlag)
 
 
 @app.route('/deleteSttAudioFiles')
@@ -433,11 +438,11 @@ def deleteSttFiles():
             fileName
         )
 
-        return {"flag": 1}
+        return jsonify({"flag": 1})
 
     except Exception as e:
         print("Exception Occured -> {0}".format(e))
-        return {"flag": 0, "Exception": "{0}".format(e)}
+        return jsonify({"flag": 0, "Exception": "{0}".format(e)})
 
 
 @app.route('/deleteSttCorpusFiles')
@@ -449,11 +454,11 @@ def deleteSttCorpusFiles():
             fileName
         )
 
-        return {"flag": 1}
+        return jsonify({"flag": 1})
 
     except Exception as e:
         print("Exception Occured -> {0}".format(e))
-        return {"flag": 0, "Exception": "{0}".format(e)}
+        return jsonify({"flag": 0, "Exception": "{0}".format(e)})
 
 
 ''' Methods to transcribe text '''
@@ -518,13 +523,14 @@ def transcribeAudio():
                     if 'alternatives' in chunks.keys():
                         alternatives = chunks['alternatives'][0]
                         if 'transcript' in alternatives:
-                            transcript = transcript + alternatives['transcript']
+                            transcript = transcript + \
+                                alternatives['transcript']
                             transcript += '\n'
                 print(transcript)
-                
+
                 with open(app.config["TRANSCRIPT_UPLOAD"]+filename_converted.split('.')[0]+'.txt', "w") as text_file:
                     text_file.write(transcript)
-                
+
                 speakerLabels = speech_recognition_results["speaker_labels"]
                 print("Done Processing ...\n")
                 extractedData = []
@@ -548,31 +554,34 @@ def transcribeAudio():
                                           }
                             finalOutput.append(mydictTemp)
                 print("Done Extracting speakers ...\n")
-                return json.dumps(finalOutput, indent=2)
+                return json.dumps(finalOutput)
 
         except Exception as e:
-            return {"Exception": "Exception Occured: {0}".format(e)}
+            return jsonify({"Exception": "Exception Occured: {0}".format(e)})
 
 
 @app.route('/getCorpusDetails')
 def getCorpusDetails():
     corpora = speech_to_text.list_corpora(
         language_customization_id).get_result()
-    return json.dumps(corpora, indent=2)
+    return jsonify(corpora)
+
 
 @app.route('/saveTextToCOS')
 def saveText():
     x = multi_part_upload(
-        bucket_name, app.config["COS_TRANSCRIPT"]+filename_converted.split('.')[0]+'.txt',
-         app.config["TRANSCRIPT_UPLOAD"]+filename_converted.split('.')[0]+'.txt')
-    
+        bucket_name, app.config["COS_TRANSCRIPT"] +
+        filename_converted.split('.')[0]+'.txt',
+        app.config["TRANSCRIPT_UPLOAD"]+filename_converted.split('.')[0]+'.txt')
+
     return jsonify({"msg": x})
+
 
 @app.route('/getAudioDetails')
 def getAudioDetails():
     audio_resources = speech_to_text.list_audio(
         acoustic_customization_id).get_result()
-    return json.dumps(audio_resources, indent=2)
+    return jsonify(audio_resources)
 
 
 @app.route('/getAudioFiles')
@@ -582,7 +591,7 @@ def getAudioFiles():
         if file[0][0] == 'a':
             myDict = {'audioFile': file[0], 'fileSize': convert_size(file[1])}
             jsonList.append(myDict)
-    return json.dumps(jsonList, indent=2)
+    return jsonify(jsonList)
 
 
 @app.route('/deleteUploadedFile')
@@ -602,7 +611,7 @@ def checkStatusL():
 
     for model in models:
         if model['customization_id'] == language_customization_id:
-            return {"status": model['status']}
+            return jsonify({"status": model['status']})
 
 
 @app.route('/checkStatusA')
@@ -613,19 +622,19 @@ def checkStatusA():
 
     for model in models:
         if model['customization_id'] == acoustic_customization_id:
-            return {"status": model['status']}
+            return jsonify({"status": model['status']})
 
 
 @app.route('/listAcousticModels')
 def listAcousticModels():
     acoustic_models = speech_to_text.list_acoustic_models().get_result()
-    return json.dumps(acoustic_models, indent=2)
+    return jsonify(acoustic_models)
 
 
 @app.route('/listLanguageModels')
 def listLanguageModels():
     language_models = speech_to_text.list_language_models().get_result()
-    return json.dumps(language_models, indent=2)
+    return jsonify(language_models)
 
 
 ''' Methods to train the two models '''
@@ -635,11 +644,11 @@ def listLanguageModels():
 def trainLanguageModel():
     try:
         speech_to_text.train_language_model(language_customization_id)
-        return {"flag": 1}
+        return jsonify({"flag": 1})
 
     except Exception as e:
         print("Exception Occured -> {0}".format(e))
-        return {"flag": 0, "Exception": "{0}".format(e)}
+        return jsonify({"flag": 0, "Exception": "{0}".format(e)})
 
 
 @app.route('/trainAcousticModel')
@@ -647,11 +656,11 @@ def trainAcousticModel():
 
     try:
         speech_to_text.train_acoustic_model(acoustic_customization_id)
-        return {"flag": 1}
+        return jsonify({"flag": 1})
 
     except Exception as e:
         print("Exception Occured -> {0}".format(e))
-        return {"flag": 0, "Exception": "{0}".format(e)}
+        return jsonify({"flag": 0, "Exception": "{0}".format(e)})
 
 
 ''' Other Methods '''

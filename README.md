@@ -109,10 +109,9 @@ This is a part of Q & A's asked at the end of the meeting. The purpose of this d
 
 ### 3. Add the Credentials to the Application
 
-- In the repo parent folder, open the **credentials1.json** file and paste the credentials copied in [step 2](#2-create-watson-speech-to-text-service) and finally save the file.
+- In the repo parent folder, open the **credentials1.json** file and paste the credentials copied in [step 2](#2-create-watson-speech-to-text-service) and save the file.
 
-- In the repo parent folder, copy and paste the **credentials.json** file created in [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). This will connect the application to the same Cloud Object Storage Bucket which was created in the first code pattern of the series.
-
+- In the [previous code pattern](https://github.com/IBM/convert-video-to-audio) cloned repo, you will have updated **credentials.json** file with cloud object storage credentials. Copy that file and paste it in parent folder of the repo that you cloned in [step 1](#1-clone-the-repo).
 
 ### 4. Deploy the Application
 
@@ -168,7 +167,9 @@ $ python app.py
 
 #### We can Train the custom Speech To Text model in just 4 steps:
 
-1. Delete the Audio files `earnings-call-test-data.mp4` & `earnings-call-Q-and-A.mp4` as shown.
+1. Delete the Audio files `earnings-call-test-data.mp4` & `earnings-call-Q-and-A.mp4` as shown. 
+
+>After clicking on delete file, it will take some time. Check logs, if required.
 
 >We delete the `earnings-call-test-data.mp4` & `earnings-call-Q-and-A.mp4` audio files since we do not require these files for training the Speech To text Model.
 
@@ -176,21 +177,21 @@ $ python app.py
 
 ![step1](doc/source/images/step1.gif)
 
-2. Upload the `earnings-call-corpus-file.txt` corpus file as shown.
+2. Click on the `upload box`, choose the `earnings-call-corpus-file.txt` corpus file and click on `Upload` as shown.
 
-> Corpus file is used to train the language model with out of vocabulary words. In this code pattern we train with 7 out of vocabulary words like _Kubernetes, Data and AI, RedHat, etc._
+> Corpus file is used to train the language model with `out of vocabulary words`. In this code pattern we train the model with **7** `out of vocabulary words` like _`Kubernetes`, `Data and AI`, `RedHat`, etc._
 
 ![step2](doc/source/images/step2.gif)
 
-3. It will take about 1-2 Min to upload the `earnings-call-test-data.flac` audio file and `earnings-call-corpus-file.txt` corpus file. Once it is uploaded successfully click on `Refresh` as shown.
+3. It will take about 1-2 min to upload the `earnings-call-train-data.flac` audio file and `earnings-call-corpus-file.txt` corpus file. The corpus file and audio files are now being uploaded to the Speech-To-Text service. Once it is uploaded successfully click on `Refresh` as shown.
 
 ![step3](doc/source/images/step3.gif)
 
 > Audio file is used to train the acoustic model which understands the accent of the speaker.
 
-4. The Status of Language Model and Acoustic model will be `ready` at this point. Click on `Train Model` to train the Language Model and Acoustic Model as shown.
+4. The status of language model and acoustic model will be `ready` at this point, indicating that the model contains data and is ready to be trained. Click on `Train Model` to train the language model and acoustic model as shown.
 
-> It will take about 10 Min to train both the models be patient.
+> It will take about 5 min to train both the models. Please be patient.
 
 ![step4](doc/source/images/step4.gif)
 

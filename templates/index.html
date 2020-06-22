@@ -19,9 +19,9 @@
     <nav class="bx--header">
         <a class="bx--header__name" href="javascript:void(0)" title="">
             <span class="bx--header__name--prefix">
-                Watson
+                IBM
                 &nbsp;
-            </span> Speech to Text with Diarization
+            </span> Code Pattern
         </a>
         <nav class="bx--header__nav" aria-label="Platform Name" data-header-nav>
             <ul class="bx--header__menu-bar" aria-label="Platform Name">
@@ -32,7 +32,7 @@
                 </li>
                 <li>
                     <a class="bx--header__menu-item" href="/transcribe" tabindex="0">
-                        Transcribe Text
+                        Transcribe audio
                     </a>
                 </li>
             </ul>
@@ -45,7 +45,7 @@
                 <div class="bx--col-sm-2">
                     <div class="outside">
                         <div class="inside">
-                            <h2>Build a custom acoustic Speech to Text<br>model with Diarization</h2>
+                            <h2>Build custom Speech to Text model with diarization capabilities</h2>
                             <br>
                             <br>
                         </div>
@@ -113,7 +113,7 @@
                 </div>
             </div>
             <div class="bx--row">
-                <div class="bx--col-md-2">
+                <div class="bx--col-lg-4">
                     <div class="outside">
                         <div class="inside">
                             <h4>Step 1</h4>
@@ -283,14 +283,15 @@
                     </div>
 
                 </div>
-                <div class="bx--col-md-3">
+                <div class="bx--col-lg-3">
                     <div class="outside">
                         <div class="inside">
                             <h4>Step 3</h4>
                             <div class="bx--form-item">
                                 <strong class="bx--file--label">Preview Audios and Corpus file in Watson
                                     Speech-To-Text</strong>
-                                <p class="bx--label-description">Note: Corpus file is used to train Language model and Audio files are used to train Acoustic model</p>
+                                <p class="bx--label-description">Note: Corpus file is used to train Language model and Audio files are used to train Acoustic model.<br> Custom language model is built to recognize the <code>out of vocabulary words</code> from the audio.<br> Custom accoustic
+                                    model is built to recognize the <code>accent of the speaker</code> from the audio.</p>
                                 <div class="bx--btn-set">
                                     <button class="bx--btn bx--btn--ghost bx--btn--sm" id="clickBtn3" onclick="refresh()" type="button">Click
                                         to Refresh
@@ -328,10 +329,10 @@
                                                 <span class="bx--table-header-label">Name</span>
                                             </th>
                                             <th>
-                                                <span class="bx--table-header-label">Out of Vocab Words</span>
+                                                <span class="bx--table-header-label">Out of vocabulary</span>
                                             </th>
                                             <th>
-                                                <span class="bx--table-header-label">Total Words</span>
+                                                <span class="bx--table-header-label">Total words</span>
                                             </th>
                                             <th>
                                                 <span class="bx--table-header-label">Status</span>
@@ -375,7 +376,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bx--col-md-3">
+                <div class="bx--col-lg-5">
                     <div class="outside">
                         <div class="inside">
                             <h4>Step 4</h4>
@@ -413,14 +414,14 @@
                             </div>
                             <br>
                             <div class="bx--row">
-                                <div class="bx--col-sm-2">
+                                <div class="bx--col-lg-5">
                                     <div class="outside">
                                         <div class="inside">
                                             <h4>Language Model Status:</h4>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bx--col-sm-1">
+                                <div class="bx--col-lg-4">
                                     <div class="outside">
                                         <div class="inside">
                                             <div class="bx--tile bx--tile--sm">
@@ -445,7 +446,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bx--col-sm-1">
+                                <div class="bx--col-lg-2">
                                     <div class="outside">
                                         <div class="inside">
                                             <div id="BtnTrainAcousticModel">
@@ -468,14 +469,14 @@
                             </div>
                             <br>
                             <div class="bx--row">
-                                <div class="bx--col-sm-2">
+                                <div class="bx--col-lg-5">
                                     <div class="outside">
                                         <div class="inside">
                                             <h4>Acoustic Model Status:</h4>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bx--col-sm-1">
+                                <div class="bx--col-lg-4">
                                     <div class="outside">
                                         <div class="inside">
                                             <div class="bx--tile bx--tile--sm">
@@ -500,7 +501,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bx--col-sm-1">
+                                <div class="bx--col-lg-2">
                                     <div class="outside">
                                         <div class="inside">
                                             <div id="btnTrainLanguageModel">
