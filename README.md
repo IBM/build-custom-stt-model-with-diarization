@@ -167,17 +167,18 @@ $ python app.py
 
 #### We can Train the custom Speech To Text model in just 4 steps:
 
-1. Delete the Audio files `earnings-call-test-data.mp4` & `earnings-call-Q-and-A.mp4` as shown. 
+1. Delete the audio files `earnings-call-test-data.mp4` & `earnings-call-Q-and-A.mp4` as shown. 
 
->After clicking on delete file, it will take some time. Check logs, if required.
+>After clicking on delete file, it will take some time. Check logs on terminal, if required.
 
 >We delete the `earnings-call-test-data.mp4` & `earnings-call-Q-and-A.mp4` audio files since we do not require these files for training the Speech To text Model.
 
->NOTE: Make sure you have downloaded the `earnings-call-test-data.mp4` & `earnings-call-Q-and-A.mp4` audio files in the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). If you have not downloaded then kindly download the files before proceeding as the files will be used in later part of the code pattern. 
+>NOTE: Make sure you have downloaded the `earnings-call-test-data.flac` & `earnings-call-Q-and-A.flac` audio files in the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). If you have not downloaded then kindly download the files before proceeding as the files will be used in later part of the code pattern. 
 
 ![step1](doc/source/images/step1.gif)
 
-2. Click on the `upload box`, choose the `earnings-call-corpus-file.txt` corpus file and click on `Upload` as shown.
+
+2. Click on the `Drag and drop files here or click here to upload`, choose the `earnings-call-corpus-file.txt` corpus file from `data` directory in the repo parent folder and click on `Upload` as shown.
 
 > Corpus file is used to train the language model with `out of vocabulary words`. In this code pattern we train the model with **7** `out of vocabulary words` like _`Kubernetes`, `Data and AI`, `RedHat`, etc._
 
@@ -189,9 +190,9 @@ $ python app.py
 
 > Audio file is used to train the acoustic model which understands the accent of the speaker.
 
-4. The status of language model and acoustic model will be `ready` at this point, indicating that the model contains data and is ready to be trained. Click on `Train Model` to train the language model and acoustic model as shown.
+4. The status of language model and acoustic model will be `ready` at this point, indicating that the model contains data and is ready to be trained. Click on both the `Train Model` buttons to train the language model and acoustic model as shown.
 
-> It will take about 5 min to train both the models. Please be patient.
+> It will take about 5 min to train both the models.<br> Please be patient.
 
 ![step4](doc/source/images/step4.gif)
 
@@ -203,9 +204,9 @@ $ python app.py
 
 #### Transcribe audio to get Diarized textual output as follows:
 
-- Click on the **Transcribe Text** and upload the `earnings-call-Q-and-A.flac` which you will have downloaded in the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). Verify the Language Speech-To-Text Model and Acoustic Speech-To-Text model and click on `Transcribe`.
+- Click on the `Transcribe audio` and upload the `earnings-call-Q-and-A.flac` which you will have downloaded in the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). Verify the language Speech-To-Text Model and acoustic Speech-To-Text model are populated and click on `Transcribe`.
 
->NOTE: It will take about 1-2 Min to transcribe the `earnings-call-Q-and-A.flac` audio file be patient.
+>NOTE: It will take about 1-2 Min to transcribe the `earnings-call-Q-and-A.flac` audio file. <br> Please be patient.
 
 ![](doc/source/images/transcribestep1.gif)
 
@@ -217,11 +218,15 @@ $ python app.py
 
 - Click on `Save Text to Cloud Object Storage` as the transcribed text file will be consumed in the [next code pattern of the series](https://github.com/IBM/use-advanced-nlp-and-tone-analyser-to-analyse-speaker-insights) to extract insights.
 
+>After clicking on `Save Text to Cloud Object Storage`, it will take some time. Check logs on terminal, if required. Once it is saved to your Cloud Object Storage you will get a notification as shown.
+
 ![](doc/source/images/transcribestep2.gif)
 
 - Similarly upload the `earnings-call-test-data.flac` which you will have downloaded in the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). Verify the Language Speech-To-Text Model and Acoustic Speech-To-Text model and click on `Transcribe`.
 
->NOTE: It will take about 15-20 Min to transcribe the `earnings-call-test-data.flac` audio file be patient.
+>NOTE: The application will alway consider the last uploaded file.
+
+>NOTE: It will take about 15-20 Min to transcribe the `earnings-call-test-data.flac` audio file.<br> Please be patient.
 
 ![](doc/source/images/transcribestep1b.gif)
 
