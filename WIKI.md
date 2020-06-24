@@ -33,6 +33,10 @@ In this code pattern, given a corpus file and audio recordings of a meeting or c
 
 # Description
 
+This Code Pattern is part of the series [Extracting insights from Videos with IBM Watson]()
+
+In the [previous code pattern](https://github.com/IBM/extract-audio-from-video), we learnt how to extract audio from video files and store the result in Cloud Object Storage. In this code pattern we will learn how to train custom language and acoustic speech to text models to transcribe audios and get diarized textual output, which we will be using for deriving insights.
+
 Part of the World Health Organization's guidance on limiting further spread of COVID-19 is to practice social distancing. As a result, Companies in most affected areas are taking precautionary measures by encouraging Work from Home and Educational Institutes are closing their facilities. Employees working from home must be aware of the happenings in their company and need to collaborate with their team, students at home must be up to date with their education.
 
 With the help of technology, employees can continue to collaborate and be involved into their work with virtual meetings, schools and teachers can continue to engage with their students through virtual classrooms. These meetings can be recorded and deriving insights from these recordings can be beneficial for the end users. Towards this goal, we will train custom language and acoustic speech to text model to transcribe audios to get diarized textual output which we will be using for deriving insights.
