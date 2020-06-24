@@ -18,7 +18,6 @@ When you have completed this code pattern, you will understand how to:
 * Use Watson Speech to Text service to convert the human voice into the written word.
 * Connect applications directly to Cloud Object Storage.
 
-
 <!--add an image in this path-->
 ![architecture](doc/source/images/architecture.png)
 
@@ -46,7 +45,6 @@ When you have completed this code pattern, you will understand how to:
 
 3. [Python](https://www.python.org/downloads/release/python-365/)
 
-
 # Steps
 
 1. [Clone the repo](#1-clone-the-repo)
@@ -58,7 +56,6 @@ When you have completed this code pattern, you will understand how to:
 4. [Deploy the Application](#4-deploy-the-application)
 
 5. [Run the Application](#5-run-the-application)
-
 
 ### 1. Clone the repo
 
@@ -76,30 +73,28 @@ We will be using the following datasets from the Cloud Object Storage:
 
 3. `earnings-call-Q-and-A.flac` - To demonstrate the diarization capabilities.
 
-
 ### About the dataset
 
 For the code pattern demonstration, we have considered `IBM Earnings Call Q1 2019` Webex recording. The data has 40min of IBM Revenue discussion, and 20+ min of Q & A at the end of the recording. We have split the data into 3 parts:
 
-- `earnings-call-train-data.mp4` - (Duration - 24:40)
+* `earnings-call-train-data.mp4` - (Duration - 24:40)
 This is the initial part of the discussion from the recording which we will be using to train the custom Watson Speech To Text model in the second code pattern from the series.
 
-- `earnings-call-test-data.mp4` - (Duration - 36:08)
+* `earnings-call-test-data.mp4` - (Duration - 36:08)
 This is the full discussion from the recording which will be used to test the custom Speech To Text model and also to get transcript for further analysis in the third code patten from the series.
 
-- `earnings-call-Q-and-A.mp4` - (Duration - 2:40)
+* `earnings-call-Q-and-A.mp4` - (Duration - 2:40)
 This is a part of Q & A's asked at the end of the meeting. The purpose of this data is to demonstrate how Watson Speech To Text can detect different speakers from an audio which will be demonstrated in the second code pattern from the series.
-
 
 ### 2. Create Watson Speech To Text Service
 
->NOTE: A **Standard account** is required to train a custom Speech To Text Model. There are three types of plans, Lite (FREE), Standard and Premium (PAID) for more info visit https://cloud.ibm.com/catalog/services/speech-to-text
+>NOTE: A **Standard account** is required to train a custom Speech To Text Model. There are three types of plans, Lite (FREE), Standard and Premium (PAID) for more info visit <https://cloud.ibm.com/catalog/services/speech-to-text>
 
-- On IBM Cloud, create a [Watson Speech To Text Service](https://cloud.ibm.com/catalog/services/speech-to-text), under `Select a pricing plan` select `Standard` and click on `create` as shown.
+* On IBM Cloud, create a [Watson Speech To Text Service](https://cloud.ibm.com/catalog/services/speech-to-text), under `Select a pricing plan` select `Standard` and click on `create` as shown.
 
 ![Speech-to-text-service](doc/source/images/stt-service.png)
 
-- In Speech To Text Dashboard, Click on `Services Credentials`
+* In Speech To Text Dashboard, Click on `Services Credentials`
 
 ![](doc/source/images/service-credentials.png)
 
@@ -224,7 +219,7 @@ $ python app.py
 
 - Similarly upload the `earnings-call-test-data.flac` which you will have downloaded in the [previous code pattern of the series](https://github.com/IBM/convert-video-to-audio). Verify the Language Speech-To-Text Model and Acoustic Speech-To-Text model and click on `Transcribe`.
 
->NOTE: The application will alway consider the last uploaded file.
+>NOTE: The application will always consider the last uploaded file.
 
 >NOTE: It will take about 15-20 Min to transcribe the `earnings-call-test-data.flac` audio file.<br> Please be patient.
 
