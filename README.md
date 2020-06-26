@@ -1,5 +1,3 @@
-**Work in progress**
-
 # Build a Custom Speech to Text model with diarization capabilities
 
 This Code Pattern is part of the series [Extracting Textual Insights from Videos with IBM Watson]()
