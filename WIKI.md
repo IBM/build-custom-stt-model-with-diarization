@@ -1,6 +1,6 @@
 # Short Title
 
-Build a custom Speech to Text model with diarization capabilites
+Build a custom Speech to Text model with speaker diarization capabilites
 
 # Long Title
 
@@ -23,7 +23,7 @@ Build custom Speech to Text model and transcribe audios to detect multiple speak
 
 # Summary
 
-In this code pattern, given a corpus file and audio recordings of a meeting or classroom, we train custom language and acoustic speech to text model to transcribe audios to get diarized textual output. 
+In this code pattern, given a corpus file and audio recordings of a meeting or classroom, we train custom language and acoustic speech to text model to transcribe audios to get speaker diarized output. 
 
 # Technologies
 
@@ -33,13 +33,9 @@ In this code pattern, given a corpus file and audio recordings of a meeting or c
 
 # Description
 
-This Code Pattern is part of the series [Extracting insights from Videos with IBM Watson]()
+One of the features of Watson Speech to Text is the capability to detect different speakers from the audio also known as speaker diarization. In this code pattern, we will showcase the speaker diarization capabilities of Watson Speech to Text by training a custom language model with a corpus text file which will train the model with ‘Out of Vocabulary’ words and a custom acoustic model with the audio files (extracted in the previous code pattern of the series) which will train the model with ‘Accent’ detection, in a python flask runtime.
 
-Part of the World Health Organization's guidance on limiting further spread of COVID-19 is to practice social distancing. As a result, Companies in most affected areas are taking precautionary measures by encouraging Work from Home and Educational Institutes are closing their facilities. Employees working from home must be aware of the happenings in their company and need to collaborate with their team, students at home must be up to date with their education.
-
-With the help of technology, employees can continue to collaborate and be involved into their work with virtual meetings, schools and teachers can continue to engage with their students through virtual classrooms. These meetings can be recorded and deriving insights from these recordings can be beneficial for the end users. 
-
-In this code pattern we will learn how to train custom language and acoustic speech to text models to transcribe audios and get diarized textual output, which we will be using for deriving insights.
+Refer this link for complete details of the series: <https://developer.ibm.com/articles/text-mining-and-analysis-from-webex-recordings>
 
 # Flow
 
