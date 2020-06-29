@@ -1,5 +1,3 @@
-**Work in progress**
-
 # Build a Custom Speech to Text model with diarization capabilities
 
 This Code Pattern is part of the series [Extracting Textual Insights from Videos with IBM Watson]()
@@ -104,7 +102,7 @@ This is a part of Q & A's asked at the end of the meeting. The purpose of this d
 
 ### 3. Add the Credentials to the Application
 
-- In the repo parent folder, open the **credentials1.json** file and paste the credentials copied in [step 2](#2-create-watson-speech-to-text-service) and save the file.
+- In the repo parent folder, open the **speechtotext.json** file and paste the credentials copied in [step 2](#2-create-watson-speech-to-text-service) and save the file.
 
 - In the [previous code pattern](https://github.com/IBM/convert-video-to-audio) cloned repo, you will have updated **credentials.json** file with cloud object storage credentials. Copy that file and paste it in parent folder of the repo that you cloned in [step 1](#1-clone-the-repo).
 

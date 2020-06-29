@@ -46,7 +46,7 @@ filename_converted = ''
 
 ''' Methods for IBM Watson Speech-To-Text '''
 
-with open('credentials1.json', 'r') as credentialsFile:
+with open('speechtotext.json', 'r') as credentialsFile:
     credentials1 = json.loads(credentialsFile.read())
 
 STT_API_KEY_ID = credentials1.get('apikey')
