@@ -80,15 +80,10 @@ $('#Transcribe').on('click', function() {
                                         <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">\
                                         <path d = "M9 7L9 3 7 3 7 7 3 7 3 9 7 9 7 13 9 13 9 9 13 9 13 7z" ></path></svg>\
                                         </button>\
-                                        <button class="bx--btn bx--btn--primary bx--btn--field" type="button">\
-                                        Download Text\
+                                        <button class="bx--btn bx--btn--primary bx--btn--field" type="button" onclick="printDiv()">\
+                                        Print\
                                         <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">\
-                                        <path d="M7.5 11l4.1-4.4.7.7L7 13 1.6 7.3l.7-.7L6.5 11V0h1v11zM13 15v-2h1v2c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1v-2h1v2h12z"></path></svg>\
-                                        </button>\
-                                        <button class="bx--btn bx--btn--primary bx--btn--field" type="button">\
-                                        Download Text with Speaker Details\
-                                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">\
-                                        <path d="M7.5 11l4.1-4.4.7.7L7 13 1.6 7.3l.7-.7L6.5 11V0h1v11zM13 15v-2h1v2c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1v-2h1v2h12z"></path></svg>\
+                                        <path d="M28,9H25V3H7V9H4a2,2,0,0,0-2,2V21a2,2,0,0,0,2,2H7v6H25V23h3a2,2,0,0,0,2-2V11A2,2,0,0,0,28,9ZM9,5H23V9H9ZM23,27H9V17H23Zm5-6H25V15H7v6H4V11H28Z"></path></svg>\
                                         </button>\
                                         </div>\
                                         <br>';
@@ -196,4 +191,15 @@ async function saveTextToCOS() {
         cosNotify.innerHTML = data.msg;
         toast.style.display = "block";
     });
+}
+
+function printDiv() {
+    var printContents = document.getElementById("scrollClass").innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
 }
