@@ -1,6 +1,6 @@
 # Build custom Speech to Text model with speaker diarization capabilities
 
-This Code Pattern is part of the series [Extracting Textual Insights from Videos with IBM Watson]()
+This Code Pattern is part of the series [Extracting Textual Insights from Videos with IBM Watson](). Please complete the [Extract audio from video](https://github.com/IBM/convert-video-to-audio) code pattern of the series before continuing further since both the code patterns are linked.
 
 One of the features of Watson Speech to Text is the capability to detect different speakers from the audio also known as speaker diarization. In this code pattern, we will showcase the speaker diarization capabilities of Watson Speech to Text by training a custom language model with a corpus text file which will train the model with ‘Out of Vocabulary’ words and a custom acoustic model with the audio files (extracted in the previous code pattern of the series) which will train the model with ‘Accent’ detection, in a python flask runtime.
 
