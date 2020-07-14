@@ -1,6 +1,6 @@
 # Short Title
 
-Build a custom Speech to Text model with speaker diarization capabilites
+Build custom Speech to Text model with speaker diarization capabilities
 
 # Long Title
 
